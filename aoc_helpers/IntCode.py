@@ -65,7 +65,7 @@ class IntCode (object):
         return False   
            
     '''
-    Excecutes all the instructions and returns the number of instructions run
+    Executes all the instructions and returns the number of instructions run
     '''   
     def executeAll(self):
         opCode = int(self.executeOperation())
