@@ -1,0 +1,25 @@
+Part 1 Notes:
+Part One is pretty straight-forward so long as your IntCode program is running. My IntCode implementation has an "executeUntil" method. So it already supported running the code until a particular opcode is hit (like '03' and '04'). When I encounter those, I execute the the single instruction so I can input or capture output, then let it run until those ops come up again. In this problem the sequence is always 3,4,4. This executeUntil and executeOperation (executes single instruction and advances to next) in IntCode implementation (which I refactored as part of Problem 9) saved a LOT of time on this problem.
+
+I created a "GridCoordinates" class which is a simple dictionary to keep track of processed coordinates. It's much more efficient than a multi-dimensional array.
+
+I also created some simple Enum classes for Orientation (up, down, left, right) and Turn Direction (left/right). That was done mostly for readability of the code, but the values also align with values from the problem.
+
+In my solution, I simply capture current tile color (3), new tile color (4), direction to turn. Because the grid is implemented as a dictionary it was easy to identify coordinates that were already processed. So as painting I keep track of the ones of that painted repeated times and subtract the overlap from the total number of paint operations to arrive at the answer.
+
+
+Part 2 Notes:
+This particular problem will initiate relativeBase parameter modes in IntCode processor. Mine was working fine, however when starting out with a "white" it resulted in returning turn directions as "1: str" instead of "1: int". As a result, it was hitting my else loop which was treating it like a left turn. I simply made sure that turn directions being read from IntCode were converted to "int" before figuring out which direction to turn. 
+
+BE SURE TO SET FIRST COORDINATE TO WHITE BEFORE RUNNING!!
+
+The second part that I had to fix was that I need to print rows of the grid FROM THE TOP. I was initially printing from 0 to rowCount. Instead I had to print from rowCount downto 0 and that produced the correct result.
+
+BE SURE TO PRINT FROM TOP TO BOTTOM (rowCount downto 0, not 0 to rowCount)!
+
+
+Summary:
+If your IntCode processor is running properly (validated from Problem 9) this isn't so bad. For me, Problem 1 was quick and easy once I created GridCoordinates class. Problem 2 I was stuck on for hours and it was simply because I was getting side-effects of comparing int to str (which is never equal). Moving forward I have to remember to be more type specific ahead of those comparisons OR capture situations when a value is unhandled.
+
+
+Summary:

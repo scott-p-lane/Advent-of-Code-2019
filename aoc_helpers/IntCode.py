@@ -4,6 +4,7 @@ Created on Dec 8, 2019
 @author: slane
 '''
 from enum import Enum
+from _operator import index
 
 
 
@@ -281,7 +282,10 @@ class IntCode (object):
         if mode == ParamModes.POSITION.value:
             val = self.instructions[index]
         elif mode == ParamModes.RELATIVE.value:
-            val = self.instructions[self.relativeBase + index]
+            address = self.relativeBase + index
+            if address < 0:
+                print("*** ERROR: Invalid relative address - ",address)
+            val = self.instructions[address]
         else:
             val = paramLoc
         return val
