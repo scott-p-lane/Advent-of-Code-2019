@@ -5,17 +5,17 @@ Created on Feb 10, 2020
 '''
 class Moon(object):
     
-    def __init__(self, moonName:str, x: int, y: int, z: int):
+    def __init__(self, moonName:str, x: float, y: float, z: float):
         """
         Initialize with three dimensional coordinates (x, y, z) which will be treated as integers.
         Initialize velocity on each axis to 0
         """
-        self.x = x
-        self.y = y
-        self.z = z
-        self.xVelocity = 0
-        self.yVelocity = 0
-        self.zVelocity = 0
+        self.x = float(x)
+        self.y = float(y)
+        self.z = float(z)
+        self.xVelocity = float(0)
+        self.yVelocity = float(0)
+        self.zVelocity = float(0)
         self.moonId = moonName
         
     def getCoordinate(self):
@@ -53,3 +53,20 @@ class Moon(object):
         self.y += self.yVelocity
         self.z += self.zVelocity
         return self.getCoordinate()
+    
+    def potentialEnergy(self):
+        total = float(0)
+        for pos in self.getCoordinate():
+            total += abs(float(pos))
+        return total
+    
+    def kineticEnergy(self):
+        total = float(0)
+        for velocity in self.getVelocity():
+            total += abs(float(velocity))
+        return total
+    
+    def totalEnergy(self):
+        return self.potentialEnergy() * self.kineticEnergy()
+        
+            
