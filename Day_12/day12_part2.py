@@ -8,12 +8,6 @@ from itertools import combinations
 from datetime import datetime
 from aoc_helpers.GeneralHelperFunctions import lcm
  
-def concurrentVelocity(pairs):
-    pairs[0].calculateVelocityPair(pairs[1])
-
-def concurrentAdvance(moon):
-    moon.advancePosition()
- 
 if __name__ == '__main__':     
     ##TEST 1 INPUT
     #moon1 = Moon("moon1", -1, 0, 2)
@@ -54,10 +48,6 @@ if __name__ == '__main__':
     
     origMoons = [origMoon1, origMoon2, origMoon3, origMoon4]
     currMoons = [moon1, moon2, moon3, moon4]
-    baselineEnergy = float(0)
-    for moon in origMoons:
-        baselineEnergy += moon.potentialEnergy()
-    print("Baseline Potential Energy: ",baselineEnergy)
     
     #Initialize pairs outside of loop (to speed things up)
     pairsList = []
@@ -85,10 +75,10 @@ if __name__ == '__main__':
                     if moon[0].velocity[axis] == 0:
                         sameAsStart += 1
         #WEND
-        print("For ",axis," axis the system repeated after ",steps," steps!")
+        print("For",axis,"axis the system repeated after",steps,"steps!")
         repeats.append(steps)
     #FEND
-    print("DONE! System will revert to original state in ",lcm(repeats)," steps.")
+    print("DONE! System will revert to original state in",lcm(repeats),"steps.")
     end = datetime.now()
     total_time = end - start
-    print("Finished in ",total_time)
+    print("Finished in",total_time)

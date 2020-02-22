@@ -1,0 +1,18 @@
+Part 1:
+Simple brute force, approach to managing state and running calculations. I created a Moon class
+to keep this simple. Using dictionaries led to less code that was easier to read and lends itself
+well to adding extra dimensions with little rework if required down the road.
+
+Part 2:
+This one was particularly frustrating because I tried so many things. In the end, you have to 
+move away from how physics actually works (I was trying to solve this with multi-dimensional
+rates of change formula). However, I did notice from one of the earlier problems that one
+of the axis had a recurring pattern.
+
+Long story short, you have to have to:
+1. Calculate the number of steps for each axis to return to its initial state. That is run
+velocity and advance methods but just on X until it gets back to its initial state. Then do the 
+same for Y, and Z axis.
+2. With those three steps you calculate LCM (least common multiple) and that is your answer.
+
+YOU WILL NEED TO CALCULATE USING FLOAT instead of INT.
